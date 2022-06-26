@@ -16,50 +16,7 @@
          */
         public function index()
         {
-            $before = Carbon::now()->subMonths(2)->timestamp;
-            $after = Carbon::now()->addMonths(2)->timestamp;
-            $afterFourMonths = Carbon::now()->addMonths(4)->timestamp;
-            $current = Carbon::now()->timestamp;
-
-            $popularGames = Http::withHeaders([
-                'Client-ID' => 'lvx8bx341tm02wmkjwc8qesgvq8dhv',
-                'Authorization' => 'Bearer efe78u9ta33m1rn6v91rznmjpe3vee',
-            ])->withBody("fields name, cover.url, first_release_date, platforms.abbreviation, rating;
-                                  where platforms = (48,49,130,6,9,14)
-                                  & (first_release_date >= {$before}
-                                  & first_release_date < {$after});
-                                  sort rating desc;
-                                  where rating != null;
-                                  limit 12;", 'text/plain')->post('https://api.igdb.com/v4/games')->json();
-
-            $recentlyReviewed = Http::withHeaders([
-                'Client-ID' => 'lvx8bx341tm02wmkjwc8qesgvq8dhv',
-                'Authorization' => 'Bearer efe78u9ta33m1rn6v91rznmjpe3vee',
-            ])->withBody("fields name, cover.url, first_release_date, platforms.abbreviation, rating, rating_count, summary;
-                                  where platforms = (48,49,130,6,9,14)
-                                  & (first_release_date >= {$before}
-                                  & first_release_date < {$current}
-                                  & rating_count > 5);
-                                  sort rating desc;
-                                  limit 3;", 'text/plain')->post('https://api.igdb.com/v4/games')->json();
-
-
-            $mostAnticipated = Http::withHeaders([
-                'Client-ID' => 'lvx8bx341tm02wmkjwc8qesgvq8dhv',
-                'Authorization' => 'Bearer efe78u9ta33m1rn6v91rznmjpe3vee',
-            ])->withBody("fields name, cover, cover.url, first_release_date, platforms.abbreviation, rating, rating_count, summary;
-                                  where platforms = (48,49,130,6,9,14)
-                                  & (first_release_date >= {$current}
-                                  & first_release_date < {$afterFourMonths});
-                                  sort rating desc;
-                                  where cover != null;
-                                  limit 4;", 'text/plain')->post('https://api.igdb.com/v4/games')->json();
-
-            return view('index', [
-                'popularGames' => $popularGames,
-                'recentlyReviewed' => $recentlyReviewed,
-                'mostAnticipated' => $mostAnticipated
-            ]);
+            return view('index');
         }
 
         /**
