@@ -606,6 +606,9 @@ video {
 .ml-6 {
   margin-left: 1.5rem;
 }
+.mt-3 {
+  margin-top: 0.75rem;
+}
 .block {
   display: block;
 }
@@ -632,6 +635,15 @@ video {
 }
 .h-5 {
   height: 1.25rem;
+}
+.h-56 {
+  height: 14rem;
+}
+.h-40 {
+  height: 10rem;
+}
+.h-20 {
+  height: 5rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -663,14 +675,36 @@ video {
 .w-4 {
   width: 1rem;
 }
+.w-44 {
+  width: 11rem;
+}
 .w-48 {
   width: 12rem;
+}
+.w-32 {
+  width: 8rem;
 }
 .max-w-6xl {
   max-width: 72rem;
 }
 .flex-none {
   flex: none;
+}
+@-webkit-keyframes pulse {
+
+  50% {
+    opacity: .5;
+  }
+}
+@keyframes pulse {
+
+  50% {
+    opacity: .5;
+  }
+}
+.animate-pulse {
+  -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 .grid-cols-1 {
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -712,6 +746,11 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(3rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(3rem * var(--tw-space-y-reverse));
+}
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -758,6 +797,10 @@ video {
 .bg-gray-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
+}
+.bg-gray-700 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;
@@ -871,6 +914,9 @@ video {
   --tw-text-opacity: 1;
   color: rgb(75 85 99 / var(--tw-text-opacity));
 }
+.text-transparent {
+  color: transparent;
+}
 .underline {
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -901,26 +947,6 @@ video {
 }
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-.spinner {
-  position: relative;
-  color: transparent !important;
-  pointer-events: none;
-}
-.spinner::after {
-  content: '';
-  position: absolute !important;
-  top: calc(50% - (1em / 2));
-  left: calc(50% - (1em / 2));
-  display: block;
-  width: 1em;
-  height: 1em;
-  border: 2px solid #dae1e7;
-  border-radius: 9999px;
-  border-right-color: transparent;
-  border-top-color: transparent;
-  -webkit-animation: spinAround 500ms infinite linear;
-          animation: spinAround 500ms infinite linear;
 }
 @-webkit-keyframes spinAround {
 
@@ -1080,12 +1106,20 @@ video {
     display: block;
   }
 
+  .lg\:h-56 {
+    height: 14rem;
+  }
+
   .lg\:w-3\/4 {
     width: 75%;
   }
 
   .lg\:w-1\/4 {
     width: 25%;
+  }
+
+  .lg\:w-48 {
+    width: 12rem;
   }
 
   .lg\:grid-cols-3 {

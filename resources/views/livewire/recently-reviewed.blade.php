@@ -30,8 +30,22 @@
 			</div>
 		</div>
 	@empty
-		<div>
-			Loading..
-		</div>
+		@foreach(range(1, 3) as $item)
+			<div class="game animate-pulse bg-gray-800 rounded-lg shadow-md flex px-6 py-6">
+				<div class="relative flex-none">
+					<div class="bg-gray-700 w-32 lg:w-48 h-40 lg:h-56 rounded"></div>
+				</div>
+				<div class="ml-12">
+					<div class="inline-block text-lg bg-gray-700 text-transparent rounded leading-tight mt-4">
+						Title goes here
+					</div>
+					<div class="mt-8 space-y-4 hidden lg:block">
+						<span class="text-transparent bg-gray-700 rounded inline-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet.</span>
+						<span class="text-transparent bg-gray-700 rounded inline-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet.</span>
+						<span class="text-transparent bg-gray-700 rounded inline-block">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet.</span>
+					</div>
+				</div>
+			</div>
+		@endforeach
 	@endforelse
 </div>
