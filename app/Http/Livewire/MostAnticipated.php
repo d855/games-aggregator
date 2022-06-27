@@ -41,7 +41,7 @@
             return collect($games)->map(function ($game) {
                 return collect($game)->merge([
                     'coverImageUrl' => Str::replacefirst('thumb', 'cover_small', $game['cover']['url']) ,
-                    'release_date' => Carbon::parse($game['first_release_date'])->format('d M, Y')
+                    'release_date' => (array_key_exists('first_release_date', $game)) ? Carbon::parse($game['first_release_date'])->format('d M, Y') : 'N/A'
                 ]);
             })->toArray();
         }

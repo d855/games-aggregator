@@ -33,6 +33,16 @@
             });
 
             $this->popularGames = $this->formatForView($popularGamesUnformatted);
+
+            collect($this->popularGames)->filter(function ($game) {
+                return $game['rating'];
+            })->each(function ($game) {
+                $this->emit('gameWithRating', [
+                    'slug' => $game['slug'],
+                    'rating' => $game['rating'] / 100
+                ]);
+            });
+
         }
 
         private function formatForView($games)
@@ -40,7 +50,7 @@
             return collect($games)->map(function ($game) {
                 return collect($game)->merge([
                     'coverImageUrl' => Str::replacefirst('thumb', 'cover_big', $game['cover']['url']) ,
-                    'rating' => isset($game['rating']) ? round($game['rating']).'%' : null,
+                    'rating' => isset($game['rating']) ? round($game['rating']) : null,
                     'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', ')
                 ]);
             })->toArray();

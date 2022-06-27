@@ -21,7 +21,7 @@ class RecentlyReviewed extends Component
             return Http::withHeaders([
                 'Client-ID' => 'lvx8bx341tm02wmkjwc8qesgvq8dhv',
                 'Authorization' => 'Bearer efe78u9ta33m1rn6v91rznmjpe3vee',
-            ])->withBody("fields name, cover.url, first_release_date, platforms.abbreviation, rating, rating_count, summary;
+            ])->withBody("fields name, cover.url, first_release_date, platforms.abbreviation, rating, rating_count, slug, summary;
                                   where platforms = (48,49,130,6,9,14)
                                   & (first_release_date >= {$before}
                                   & first_release_date < {$current}
@@ -31,6 +31,16 @@ class RecentlyReviewed extends Component
         });
 
         $this->recentlyReviewed = $this->formatForView($recentlyReviewedUnformatted);
+
+        collect($this->recentlyReviewed)->filter(function ($game) {
+            return $game['rating'];
+        })->each(function ($game) {
+            $this->emit('reviewGameWithRating', [
+                'slug' => 'review_'.$game['slug'],
+                'rating' => $game['rating'] / 100
+            ]);
+        });
+
     }
 
     private function formatForView($games)
@@ -38,7 +48,7 @@ class RecentlyReviewed extends Component
         return collect($games)->map(function ($game) {
             return collect($game)->merge([
                 'coverImageUrl' => Str::replacefirst('thumb', 'cover_big', $game['cover']['url']),
-                'rating' => isset($game['rating']) ? round($game['rating']).'%' : null,
+                'rating' => isset($game['rating']) ? round($game['rating']) : null,
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', ')
             ]);
         })->toArray();

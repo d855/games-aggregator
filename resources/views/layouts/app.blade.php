@@ -50,5 +50,7 @@
 		</footer>
 
 		<livewire:scripts/>
+		<script src="/js/app.js"></script>
+		@stack('scripts')
 	</body>
 </html>
