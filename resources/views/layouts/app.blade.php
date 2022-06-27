@@ -42,6 +42,7 @@
 
 		<livewire:scripts/>
 		<script src="/js/app.js"></script>
+		<script src="//unpkg.com/alpinejs" defer></script>
 		@stack('scripts')
 	</body>
 </html>
