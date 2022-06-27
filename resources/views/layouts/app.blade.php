@@ -21,17 +21,8 @@
 						<li><a href="#" class="hover:text-gray-400">Coming Soon</a></li>
 					</ul>
 				</div>
-
 				<div class="flex items-center mt-6 lg:mt-0">
-					<div class="relative">
-						<input type="text" class="bg-gray-800 pl-8 text-sm rounded-full w-64 px-3 py-1 focus:outline-none focus:shadow-outline" placeholder="Search">
-						<div class="absolute top-0 flex items-center h-full ml-2">
-							<svg class="text-gray-400 w-4" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-								<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-							</svg>
-						</div>
-					</div>
-
+					<livewire:search-dropdown/>
 					<div class="ml-6">
 						<a href="#"><img src="https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?f=y" alt="avatar" class="rounded-full w-8"></a>
 					</div>
