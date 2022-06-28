@@ -5,6 +5,10 @@ module.exports = {
     "./resources/**/*.js",
     "./resources/**/*.vue",
   ],
+  purge: [
+      './app/**/*.php',
+      './resources/**/*.php'
+  ],
   theme: {
     extend: {
       spacing: {
