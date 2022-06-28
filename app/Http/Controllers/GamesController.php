@@ -72,7 +72,7 @@
                 'platforms' => collect($game['platforms'])->pluck('abbreviation')->implode(', '),
                 'memberRating' => array_key_exists('rating', $game) ? round($game['rating']) : 'N/A',
                 'criticRating' => array_key_exists('total_rating', $game) ? round($game['total_rating']) : 'N/A',
-                'trailer' => 'https://youtube.com/watch/'.$game['videos'][0]['video_id'],
+                'trailer' => array_key_exists('videos', $game) ? 'https://youtube.com/embed/'.$game['videos'][0]['video_id'] : null,
                 'screenshots' => collect($game['screenshots'])->map(function ($screenshot) {
                     return [
                         'big' => Str::replace('thumb', 'screenshot_big', $screenshot['url']),

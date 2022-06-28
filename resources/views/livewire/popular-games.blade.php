@@ -13,9 +13,4 @@
 	@include('_rating', [
         'event' =>'gameWithRating'
 	])
-	{{--	<script>--}}
-	{{--		window.livewire.on('gameWithRating', params => {--}}
-	{{--            console.log('A post was added with the id of: ' + params.slug)--}}
-	{{--		})--}}
-	{{--	</script>--}}
 @endpush
